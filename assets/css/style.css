@@ -6,6 +6,7 @@ header {
     display: flex;
     justify-content: space-between;
     text-align: center;
+    align-items: center;
 }
 
 article {
@@ -17,4 +18,20 @@ article {
     flex-direction: column;
     text-align: center;
     width: 20%;
+}
+
+#weatherContainer{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.weatherCard{
+    border: 2px solid black;
+    width: 25%;
+    padding: 2%;
+}
+
+#todaysWeather {
+    width: 100%;
 }
