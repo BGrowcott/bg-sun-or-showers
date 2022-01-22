@@ -6,6 +6,10 @@ let lat = 0;
 let lon = 0;
 let oneCallApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,hourly&appid=8d0c1a27ce3e47ce06696db25a3b205f`;
 
+if (localStorage.getItem("history") == null) {
+  localStorage.setItem('history', '[]')
+}
+
 // render date and time
 $('#today').text(moment().format("DD/MM/YYYY, HH:mm:ss"))
 function updateTime() {
@@ -51,6 +55,9 @@ function citySearch(e) {
   cityName = $("#cityInput").val();
   weatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=8d0c1a27ce3e47ce06696db25a3b205f`;
   coordSearch();
+  history()
+  addSearch()
+  $("#cityInput").val('')
 }
 
 $("#citySearchButton").click(citySearch);
@@ -86,4 +93,25 @@ function renderForecast() {
     $(forecastCardArray[i]).append($(`<p><span>Wind: ${weatherData.daily[i].wind_speed} m/s</span>`))
     $(forecastCardArray[i]).append($(`<p><span>Humidity: ${weatherData.daily[i].humidity}</span>`))
   }
+}
+// saving inputs to local storage
+let historyArray =[]
+function history() {
+  historyArray = JSON.parse(localStorage.getItem("history"))
+  historyArray.push($("#cityInput").val())
+  localStorage.setItem('history', JSON.stringify(historyArray))
+}
+
+//render history
+renderHistory()
+function renderHistory(){
+  let localStorageArray = JSON.parse(localStorage.getItem("history"))
+  for (let i = 0; i<localStorageArray.length; i++) {
+    $('#searchHistory').prepend($(`<li>${localStorageArray[i].toUpperCase()}</li>`))
+  }
+}
+
+//add latest input
+function addSearch(){
+  $('#searchHistory').prepend($(`<li>${$("#cityInput").val().toUpperCase()}</li>`))
 }
