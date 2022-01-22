@@ -130,6 +130,10 @@ function history() {
       return;
     }
   }
+  console.log(historyArray.length)
+  // limit history size
+  if (historyArray.length > 10){historyArray.shift()}
+  
   historyArray.push($("#cityInput").val().toUpperCase());
   localStorage.setItem("history", JSON.stringify(historyArray));
 }
@@ -168,6 +172,5 @@ function searchFromHistory(e) {
   $("#cityInput").val(`${$(e.target).text()}`);
   citySearch(e);
 }
-
 
 
