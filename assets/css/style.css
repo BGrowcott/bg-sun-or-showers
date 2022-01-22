@@ -1,3 +1,7 @@
+body{
+    font-family: 'Poppins';
+}
+
 #logo{
     width: 50px;
 }
@@ -34,9 +38,12 @@ article {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
+    border: 2px solid grey;
+    border-radius: 20px;
 }
 
 h1 {
+    font-size: 160%;
     width: 100%;
     align-self: center;
     text-align: center;
@@ -44,13 +51,19 @@ h1 {
 }
 
 .weatherCard{
-    border: 2px solid black;
     width: 20%;
     padding: 2%;
+    border-right: 2px solid grey;
 }
 
 #todaysWeather {
     width: 100%;
+    border-bottom: 2px solid grey;
+    border-right: none;
+}
+
+.weatherCard:nth-child(6){
+    border-right: none;
 }
 
 #UV{
@@ -58,4 +71,13 @@ h1 {
     color: ivory;
     border-radius: 5px;
     padding: 2px;
+}
+
+li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+li:nth-child(odd){
+    background-color: rgb(226, 226, 226);
 }
