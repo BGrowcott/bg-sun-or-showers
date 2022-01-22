@@ -2,15 +2,25 @@
     width: 50px;
 }
 
+p {
+    line-height: 130%;
+}
+
 header {
     display: flex;
     justify-content: space-between;
     text-align: center;
     align-items: center;
+    background-image: url(../images/clouds.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 5px 10px #62b5e1, 0px 0px 10px #62b5e1 inset;
+    margin-bottom: 30px;
 }
 
 article {
     display: flex;
+    margin: 1%;
 }
 
 #citySearch{
@@ -26,12 +36,26 @@ article {
     flex-wrap: wrap;
 }
 
+h1 {
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    justify-self: center;
+}
+
 .weatherCard{
     border: 2px solid black;
-    width: 25%;
+    width: 20%;
     padding: 2%;
 }
 
 #todaysWeather {
     width: 100%;
+}
+
+#UV{
+    background-color: green;
+    color: ivory;
+    border-radius: 5px;
+    padding: 2px;
 }

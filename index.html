@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -12,8 +12,19 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+      integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+      integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
       integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
@@ -24,9 +35,9 @@
   </head>
   <body>
     <header>
-      <img id='logo' src="assets/images/bglogo2.jpg" alt="BG logo" />
+      <img id="logo" src="assets/images/bglogo2.jpg" alt="BG logo" />
       <h1>Sun or Showers</h1>
-      <span>Todays date and time</span>
+      <span id="today">Todays date and time</span>
     </header>
     <main>
       <article>
@@ -34,45 +45,27 @@
           <label for="cityInput">City name:</label>
           <input id="cityInput" type="text" />
           <button id="citySearchButton">Search</button>
+          <ul id="searchHistory"></ul>
         </form>
 
         <section id="weatherContainer">
+          
           <div class="weatherCard" id="todaysWeather">
-              <p><span id='cityName'>City Name</span> <span id='todaysDate'>Todays Date</span></p>
-              <img id='weatherIcon' src="" alt="weather representation icon">
-              <p><span id="temp">Temperature</span></p>
-              <p><span id="wind">Wind</span></p>
-              <p><span id="humidity">Humidity</span></p>
-              <p><span id="UV">UV Index</span></p>
+            <p>
+              <span id="cityName">City Name</span>
+              <span id="todaysDate">Todays Date</span>
+            </p>
+            <img id="weatherIcon" src="" alt="weather representation icon" />
+            <p><span id="temp">Temperature</span></p>
+            <p><span id="wind">Wind</span></p>
+            <p><span id="humidity">Humidity</span></p>
+            <p>UV Index: <span id="UV"></span></p>
           </div>
-          <div class="weatherCard">
-            <p><span>Date</span></p>
-            <img src="" alt="weather representation icon">
-            <p><span>Temperature</span></p>
-            <p><span>Wind</span></p>
-            <p><span>Humidity</span></p>
-          </div>
-          <div class="weatherCard">
-            <p><span>Date</span></p>
-            <img src="" alt="weather representation icon">
-            <p><span>Temperature</span></p>
-            <p><span>Wind</span></p>
-            <p><span>Humidity</span></p>
-          </div>
-          <div class="weatherCard">
-            <p><span>Date</span></p>
-            <img src="" alt="weather representation icon">
-            <p><span>Temperature</span></p>
-            <p><span>Wind</span></p>
-            <p><span>Humidity</span></p>
-          </div>
-          <div class="weatherCard">
-            <p><span>Date</span></p>
-            <img src="" alt="weather representation icon">
-            <p><span>Temperature</span></p>
-            <p><span>Wind</span></p>
-            <p><span>Humidity</span></p>
-          </div>
+          <div class="weatherCard"></div>
+          <div class="weatherCard"></div>
+          <div class="weatherCard"></div>
+          <div class="weatherCard"></div>
+          <div class="weatherCard"></div>
         </section>
       </article>
     </main>
