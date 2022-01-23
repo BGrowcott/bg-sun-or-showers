@@ -11,9 +11,9 @@ if (localStorage.getItem("history") == null) {
 }
 
 // render date and time
-$("#today").text(moment().format("DD/MM/YYYY, HH:mm:ss"));
+$("#today").text(moment().format("DD/MM/YYYY HH:mm:ss"));
 function updateTime() {
-  $("#today").text(moment().format("DD/MM/YYYY, HH:mm:ss"));
+  $("#today").text(moment().format("DD/MM/YYYY HH:mm:ss"));
 }
 setInterval(updateTime, 1000);
 
@@ -56,7 +56,8 @@ function weatherSearch() {
       weatherData = data;
     })
     .then(renderCurrentWeather)
-    .then(renderForecast);
+    .then(renderForecast)
+    .then(setDayNight)
 }
 // load default of Birmingham
 coordSearch();
@@ -180,6 +181,19 @@ $("#searchHistory").click(searchFromHistory);
 function searchFromHistory(e) {
   $("#cityInput").val(`${$(e.target).text()}`);
   citySearch(e);
+}
+
+// background day/night theme
+
+function setDayNight() {
+  if (moment().unix() + weatherData.timezone_offset > weatherData.current.sunset){
+    $('body').css('background-image', 'url(assets/images/nightsky.jpg)')
+    $('body').css('color', 'white')
+  }
+  else {
+    $('body').css('background-image', 'url(assets/images/pikrepo.com.jpg)')
+    $('body').css('color', 'black')
+  }
 }
 
 

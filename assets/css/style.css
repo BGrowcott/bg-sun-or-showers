@@ -4,11 +4,21 @@
 
 body{
     font-family: 'Poppins';
-    background-image: url(../images/nightsky.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    color: white;
+    color: black;
+    animation: fadeIn 5s;
 }
+
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
 #logo{
     width: 40px;
@@ -22,7 +32,7 @@ header {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
     /* justify-content: space-between; */
-    /* text-align: center; */
+    text-align: center;
     /* align-items: center; */
     /* background-image: url(../images/clouds.jpg); */
     background-repeat: no-repeat;
@@ -59,7 +69,7 @@ h1 {
     font-size: 130%;
     width: 100%;
     align-self: center;
-    /* text-align: center; */
+    text-align: left;
     justify-self: center;
     margin-left: 10px;
     margin-bottom: 0px;
