@@ -33,7 +33,7 @@ header {
     display: flex;
     /* justify-content: space-between; */
     text-align: center;
-    /* align-items: center; */
+    align-items: center;
     /* background-image: url(../images/clouds.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -93,14 +93,7 @@ h2{
     border-bottom: 1px solid #85ddff;
     border-right: none;
     border-radius: 18px 18px 0px 0px;
-    /* background-image: url(../images/nightsky.jpg); */
-    /* background-image: url(../images/clouds.jpg); */
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.weatherCard:nth-child(6){
-    border-right: none;
+    background-color: transparent;
 }
 
 #UV{
