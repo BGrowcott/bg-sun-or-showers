@@ -194,8 +194,9 @@ function searchFromHistory(e) {
 
 function setDayNight() {
   if (
-    moment().unix() + weatherData.timezone_offset >
-    weatherData.current.sunset
+    moment().unix() >
+    weatherData.current.sunset && moment().unix() <
+    weatherData.daily[1].sunrise
   ) {
     $("body").css("background-image", "url(assets/images/nightsky.jpg)");
     $("body").css("color", "white");

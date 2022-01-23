@@ -31,13 +31,8 @@ p{
 header {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
-    /* justify-content: space-between; */
     text-align: center;
     align-items: center;
-    /* background-image: url(../images/clouds.jpg); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* box-shadow: 0px 5px 10px #62b5e1, 0px 0px 10px #62b5e1 inset; */
     margin-bottom: 30px;
 }
 
@@ -103,6 +98,11 @@ h2{
     padding: 2px;
 }
 
+ul {
+    align-self: center;
+    width: 80%;
+}
+
 li {
     padding: 5px;
     cursor: pointer;
@@ -122,10 +122,14 @@ li:hover {
 
 #citySearchButton {
     cursor: pointer;
+    align-self: center;
     background-color: lavender;
     border-radius: 5px;
     box-shadow: 0px 2px black;
-    border: 1px solid black
+    border: 1px solid black;
+    height: 30px;
+    font-size: 120%;
+    width: 80%;
 }
 
 #citySearchButton:active{
@@ -138,7 +142,7 @@ li:hover {
 }
 
 #searchLabel{
-    font-size: 150%;
+    font-size: 130%;
 }
 
 #cityInput{
