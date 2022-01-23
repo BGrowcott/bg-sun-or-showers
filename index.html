@@ -16,6 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
     <title>Sun or Showers?</title>
   </head>
   <body>
@@ -30,7 +31,6 @@
         </button>
       </div>
       <div class="modal-body">
-        Looks like something went wrong. <br>
         Make sure you enter a valid city name. <br>
         If you are searching for a city in specific country try adding the country code <br>
         E.G.<br>
@@ -52,17 +52,18 @@
     <main>
       <article>
         <form id="citySearch">
-          <label for="cityInput">Search by City:</label>
+          <label id="searchLabel" for="cityInput">Search by City:</label>
           <input id="cityInput" type="text" placeholder="Birmingham, GB" />
           <button id="citySearchButton">Search</button><br />
+          <p>Recent searches:</p>
           <ul id="searchHistory"></ul>
         </form>
 
         <section id="weatherContainer">
           <div class="weatherCard" id="todaysWeather">
             <h2>
-              <span id="cityName">City Name</span>
-              <span id="todaysDate">Todays Date</span>
+              <strong><span id="cityName">City Name</span></strong>
+              <strong><span id="todaysDate">Todays Date</span></strong>
             </h2>
             <img id="weatherIcon" src="" alt="weather representation icon" />
             <p><span id="temp">Temperature</span></p>

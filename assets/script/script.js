@@ -33,7 +33,17 @@ function coordSearch() {
       oneCallApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,hourly&appid=8d0c1a27ce3e47ce06696db25a3b205f`;
     })
     .then(weatherSearch)
-    .catch(function(){$('#errorModal').modal()})
+    .catch(errorBehaviour)
+}
+
+function errorBehaviour(){
+  //show modal
+  $('#errorModal').modal()
+  // remove bad search from local storage
+  localStorageArray.pop()
+  localStorage.setItem("history", JSON.stringify(localStorageArray))
+  // remove bad search from recent searches
+  $('#searchHistory').children().eq(0).remove()
 }
 
 // function for getting weather at coordinates and call render functions
@@ -130,10 +140,9 @@ function history() {
       return;
     }
   }
-  console.log(historyArray.length)
   // limit history size
   if (historyArray.length > 10){historyArray.shift()}
-  
+
   historyArray.push($("#cityInput").val().toUpperCase());
   localStorage.setItem("history", JSON.stringify(historyArray));
 }
