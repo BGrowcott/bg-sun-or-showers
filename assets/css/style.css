@@ -130,6 +130,7 @@ li:hover {
     height: 30px;
     font-size: 120%;
     width: 80%;
+    margin-bottom: 10px;
 }
 
 #citySearchButton:active{
@@ -149,4 +150,67 @@ li:hover {
     height: 30px;
     border-radius: 3px;
     margin-bottom: 2px;
+}
+
+#credit {
+    text-align: center;
+}
+
+@media screen and (max-width: 740px) {
+
+    body {
+        background-repeat: repeat;
+    }
+
+    article {
+        flex-direction: column;
+    }
+    #citySearch{
+        flex-direction: row;
+        width: 45%;
+        align-items: center;
+        justify-content: space-between;
+        align-self: flex-start;
+        padding: 0px;
+        margin-bottom: 10px;
+    }
+
+    #weatherContainer {
+        align-self: flex-start;
+    }
+
+    .weatherCard{
+        padding-left: 0px;
+    }
+
+    #citySearchButton {
+        width:initial;
+        margin-bottom: 0px;
+    }
+
+    #citySearch p{
+        display: none;
+    }
+
+    #cityInput, #searchLabel{
+        margin-bottom: 0px;
+    }
+
+    ul {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .weatherCard {
+        border-bottom: 1px solid #85ddff;
+
+        width: 40%
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .weatherCard {
+        width: 90%
+    }
 }
