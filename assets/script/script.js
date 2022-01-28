@@ -119,7 +119,7 @@ function renderForecast() {
     );
     $(forecastCardArray[i]).append(
       $(`<img>`, {
-        src: `http://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`,
+        src: `https://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`,
         alt: "weather icon for this day",
       })
     );
