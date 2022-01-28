@@ -194,8 +194,25 @@ li:hover {
     margin-bottom: 0px;
   }
 
+  #cityInput{
+    margin-right: 2px;
+  }
+
   ul {
     display: none;
+  }
+}
+
+@media screen and (max-width: 650px){
+
+  #citySearch{
+    flex-wrap: wrap;
+    justify-content: initial;
+  }
+
+  #searchLabel {
+    width: 100%;
+    text-align: left;
   }
 }
 
