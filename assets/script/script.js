@@ -34,6 +34,7 @@ function coordSearch() {
       oneCallApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,hourly&appid=8d0c1a27ce3e47ce06696db25a3b205f`;
     })
     .then(weatherSearch)
+    .then(() => $("body").addClass("fadeIn"))
     .catch(errorBehaviour);
 }
 
@@ -69,11 +70,9 @@ function citySearch(e) {
   if ($("#cityInput").val() === "") {
     return;
   }
-  for (let i = 1; i < forecastCardArray.length; i++) {
-    $(forecastCardArray[i]).empty();
-  }
   cityName = $("#cityInput").val();
   weatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=8d0c1a27ce3e47ce06696db25a3b205f`;
+  $("body").removeClass("fadeIn");
   coordSearch();
   history();
   addSearch();
@@ -84,6 +83,7 @@ $("#citySearchButton").click(citySearch);
 
 // render current weather
 function renderCurrentWeather() {
+  const uvIndicator = $("#UV");
   const currentWeather = weatherData.current;
   $("#cityName").text(`${coordData.city.name}, ${coordData.city.country} - `);
   $("#todaysDate").text(
@@ -98,13 +98,14 @@ function renderCurrentWeather() {
   $("#temp").text(`Temperature: ${currentWeather.temp} °C`);
   $("#wind").text(`Wind speed: ${currentWeather.wind_speed} meter/sec`);
   $("#humidity").text(`Humidity: ${currentWeather.humidity}`);
-  $("#UV").text(` ${currentWeather.uvi} `);
+  uvIndicator.text(` ${currentWeather.uvi} `);
   if (currentWeather.uvi > 2) {
-    $("#UV").css("background-color", "yellow");
-    $("#UV").css("color", "black");
-  } else if (currentWeather.uvi > 5) {
-    $("#UV").css("background-color", "red");
-  } else $("#UV").css("background-color", "green");
+    uvIndicator.css("background-color", "yellow");
+    uvIndicator.css("color", "black");
+  }
+  if (currentWeather.uvi > 5) {
+    uvIndicator.css("background-color", "red");
+  } else uvIndicator.css("background-color", "green");
 }
 
 // render forecast
@@ -112,26 +113,26 @@ let forecastCardArray = $(".weatherCard");
 function renderForecast() {
   for (let i = 1; i < forecastCardArray.length; i++) {
     const dailyWeather = weatherData.daily[i];
-    $(forecastCardArray[i]).append(
+    const forecastCard = $(forecastCardArray[i]);
+    forecastCard.empty()
+    forecastCard.append(
       $(
         `<p><span>${moment
           .unix(dailyWeather.dt + weatherData.timezone_offset)
           .format("DD/MM/YYYY")}</span>`
       )
     );
-    $(forecastCardArray[i]).append(
+    forecastCard.append(
       $(`<img>`, {
         src: `https://openweathermap.org/img/wn/${dailyWeather.weather[0].icon}@2x.png`,
         alt: "weather icon for this day",
       })
     );
-    $(forecastCardArray[i]).append(
-      $(`<p><span>${dailyWeather.temp.day} °C</span>`)
-    );
-    $(forecastCardArray[i]).append(
+    forecastCard.append($(`<p><span>${dailyWeather.temp.day} °C</span>`));
+    forecastCard.append(
       $(`<p><span>Wind: ${dailyWeather.wind_speed} m/s</span>`)
     );
-    $(forecastCardArray[i]).append(
+    forecastCard.append(
       $(`<p><span>Humidity: ${dailyWeather.humidity}</span>`)
     );
   }
@@ -196,8 +197,8 @@ function searchFromHistory(e) {
 
 function setDayNight() {
   if (
-    moment().unix() > weatherData.current.sunset &&
-    moment().unix() < weatherData.daily[1].sunrise
+    weatherData.current.dt > weatherData.current.sunset ||
+    weatherData.current.dt < weatherData.current.sunrise
   ) {
     $("body").css("background-image", "url(assets/images/nightsky.jpg)");
     $("body").css("color", "white");
