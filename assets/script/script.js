@@ -1,10 +1,10 @@
 let cityName = "birmingham, gb";
-let coordData = "";
-let weatherData = "";
+let coordData;
+let weatherData;
 let weatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&cnt=1&appid=8d0c1a27ce3e47ce06696db25a3b205f`;
-let lat = 0;
-let lon = 0;
-let oneCallApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,hourly&appid=8d0c1a27ce3e47ce06696db25a3b205f`;
+let lat;
+let lon;
+let oneCallApiUrl;
 
 if (localStorage.getItem("history") == null) {
   localStorage.setItem("history", "[]");
@@ -84,24 +84,25 @@ $("#citySearchButton").click(citySearch);
 
 // render current weather
 function renderCurrentWeather() {
+  const currentWeather = weatherData.current;
   $("#cityName").text(`${coordData.city.name}, ${coordData.city.country} - `);
   $("#todaysDate").text(
     moment
-      .unix(weatherData.current.dt + weatherData.timezone_offset)
+      .unix(currentWeather.dt + weatherData.timezone_offset)
       .format("DD/MM/YYYY, HH:mm")
   );
   $("#weatherIcon").attr(
     "src",
-    `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`
   );
-  $("#temp").text(`Temperature: ${weatherData.current.temp} °C`);
-  $("#wind").text(`Wind speed: ${weatherData.current.wind_speed} meter/sec`);
-  $("#humidity").text(`Humidity: ${weatherData.current.humidity}`);
-  $("#UV").text(` ${weatherData.current.uvi} `);
-  if (weatherData.current.uvi > 2) {
+  $("#temp").text(`Temperature: ${currentWeather.temp} °C`);
+  $("#wind").text(`Wind speed: ${currentWeather.wind_speed} meter/sec`);
+  $("#humidity").text(`Humidity: ${currentWeather.humidity}`);
+  $("#UV").text(` ${currentWeather.uvi} `);
+  if (currentWeather.uvi > 2) {
     $("#UV").css("background-color", "yellow");
     $("#UV").css("color", "black");
-  } else if (weatherData.current.uvi > 5) {
+  } else if (currentWeather.uvi > 5) {
     $("#UV").css("background-color", "red");
   } else $("#UV").css("background-color", "green");
 }
@@ -110,27 +111,28 @@ function renderCurrentWeather() {
 let forecastCardArray = $(".weatherCard");
 function renderForecast() {
   for (let i = 1; i < forecastCardArray.length; i++) {
+    const dailyWeather = weatherData.daily[i];
     $(forecastCardArray[i]).append(
       $(
         `<p><span>${moment
-          .unix(weatherData.daily[i].dt + weatherData.timezone_offset)
+          .unix(dailyWeather.dt + weatherData.timezone_offset)
           .format("DD/MM/YYYY")}</span>`
       )
     );
     $(forecastCardArray[i]).append(
       $(`<img>`, {
-        src: `https://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`,
+        src: `https://openweathermap.org/img/wn/${dailyWeather.weather[0].icon}@2x.png`,
         alt: "weather icon for this day",
       })
     );
     $(forecastCardArray[i]).append(
-      $(`<p><span>${weatherData.daily[i].temp.day} °C</span>`)
+      $(`<p><span>${dailyWeather.temp.day} °C</span>`)
     );
     $(forecastCardArray[i]).append(
-      $(`<p><span>Wind: ${weatherData.daily[i].wind_speed} m/s</span>`)
+      $(`<p><span>Wind: ${dailyWeather.wind_speed} m/s</span>`)
     );
     $(forecastCardArray[i]).append(
-      $(`<p><span>Humidity: ${weatherData.daily[i].humidity}</span>`)
+      $(`<p><span>Humidity: ${dailyWeather.humidity}</span>`)
     );
   }
 }
@@ -194,9 +196,8 @@ function searchFromHistory(e) {
 
 function setDayNight() {
   if (
-    moment().unix() >
-    weatherData.current.sunset && moment().unix() <
-    weatherData.daily[1].sunrise
+    moment().unix() > weatherData.current.sunset &&
+    moment().unix() < weatherData.daily[1].sunrise
   ) {
     $("body").css("background-image", "url(assets/images/nightsky.jpg)");
     $("body").css("color", "white");
